@@ -29,11 +29,16 @@
     <table>
     </table>
 
-    <button class="addPhone">添加</button>
-    <button>反选</button>
-    <button>取消所有选择</button>
-    <button>选择所有</button>
-    <button class="deleteSelection">删除选择</button>
+    <div>
+        <button class="addPhone">添加</button>
+        <button class="deleteBatch">删除选择</button>
+    </div>
+
+    <div style="margin-top: 1em">
+        <button>反选</button>
+        <button>取消所有选择</button>
+        <button>选择所有</button>
+    </div>
 </div>
 
 <script>
@@ -51,6 +56,25 @@
             e.preventDefault();
             loadTable();
         });
+    }
+
+    function doDeleteBatch(e) {
+        $checked = $("table :checked");
+        if ($checked.length < 1) {
+            alert("必须要选择至少一个")
+        } else {
+            if (window.confirm("是否确定删除？")) {
+                $.ajax({
+                    method: "GET",
+                    url: "${root}/delete",
+                    data: $checked.serialize()
+                }).done(function () {
+                    loadTable();
+                }).fail(function () {
+                    alert("删除失败!");
+                });
+            }
+        }
     }
 
     function doUpdate () {
@@ -107,9 +131,9 @@
     $(function () {
         loadTable();
 
-        $("table").on("click", ".del", doDelete)
-                   .on('click', ".update", doUpdate);
+        $("table").on("click", ".del", doDelete).on('click', ".update", doUpdate);
         $(".addPhone").on('click', doAdd);
+        $(".deleteBatch").click(doDeleteBatch);
     });
 
 </script>

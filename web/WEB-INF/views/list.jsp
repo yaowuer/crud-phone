@@ -1,9 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
 <tr>
-    <th></th>
+    <th>选择</th>
     <th>编号</th>
     <th>名字</th>
     <th>厂商</th>
@@ -12,7 +11,7 @@
 </tr>
 <c:forEach var="phone" items="${phones}" varStatus="s">
     <tr data-id="${phone.id}">
-        <td><input type="checkbox"></td>
+        <td><input type="checkbox" name="id" value="${phone.id}"></td>
         <td>${s.count}</td>
         <td>${phone.id}</td>
         <td>${phone.name}</td>

@@ -15,7 +15,9 @@ public class PhoneDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 需要若干校验
 
-        String id = req.getParameter("id");
-        DBUtil.execute("delete from phone where id = ?", id);
+        String[] ids = req.getParameterValues("id");
+        for (String id : ids) {
+            DBUtil.execute("delete from phone where id = ?", id);
+        }
     }
 }
