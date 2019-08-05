@@ -4,18 +4,21 @@
     <h3>添加手机</h3>
     <form class="addForm">
         <div>
-            <input name="name" class="name" placeholder="名字">
+            <input id="name" name="name" class="name" placeholder="名字" required>
         </div>
 
         <div>
-            <input name="brand" placeholder="公司">
+            <input name="brand" placeholder="公司" required>
         </div>
 
         <div>
-            <input name="price" placeholder="价格">
+            <input name="price" placeholder="价格" required>
+        </div>
+
+        <div>
+            <input type="submit" class="submit" value="提交">
+            <button class="back">返回</button>
         </div>
     </form>
 
-    <button class="submit">提交</button>
-    <button class="back">返回</button>
 </div>

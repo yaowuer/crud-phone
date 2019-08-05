@@ -7,6 +7,9 @@
 <head>
     <title>首页</title>
     <script src="${root}/assets/jquery.js"></script>
+    <script src="${root}/assets/jquery.validate.min.js"></script>
+    <script src="${root}/assets/messages_zh.js"></script>
+
     <style>
         .doFloat {
             position: fixed;
@@ -16,6 +19,10 @@
             height: 100%;
             background: white;
             padding: 20px;
+        }
+        label.error {
+            color: red;
+            padding-left: 1em;
         }
     </style>
 </head>
@@ -67,7 +74,7 @@
                 $.ajax({
                     method: "GET",
                     url: "${root}/delete",
-                    data: $checked.serialize()
+                    data: $checked.serialize() // id=2&id=3&id=5
                 }).done(function () {
                     loadTable();
                 }).fail(function () {
@@ -110,6 +117,15 @@
                     $(this).closest("div").remove();
                 })
                 .on('click', '.submit', function () {
+                    // 进行校验
+                    // 1. 名字不能为空，而且不能太长
+                    // 2. 厂商不能为空，而且名字不能太长
+                    // 3. 价格不能为空，而且必须是一个合理的数字
+
+                    $(".addForm").validate();
+
+                    if (!$(".addForm").valid()) return;
+
                     // 将表格的内容提交给后台
                     $.ajax({
                         method: "POST",
