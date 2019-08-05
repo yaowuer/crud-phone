@@ -2,7 +2,7 @@
 
 <div id="addDiv">
     <h3>添加手机</h3>
-    <form class="addForm">
+    <form id="addForm">
         <div>
             <input id="name" name="name" class="name" placeholder="名字" required>
         </div>
@@ -13,6 +13,10 @@
 
         <div>
             <input name="price" placeholder="价格" required>
+        </div>
+
+        <div>
+            <input name="email" placeholder="邮箱" required>
         </div>
 
         <div>

@@ -96,7 +96,7 @@
                     $.ajax({
                         method: "POST",
                         url: "${pageContext.request.contextPath}/edit",
-                        data: $(".editForm").serialize()
+                        data: $("#editForm").serialize()
                     }).done(function () {
                         $("#editDiv").remove();
                         loadTable();
@@ -122,15 +122,27 @@
                     // 2. 厂商不能为空，而且名字不能太长
                     // 3. 价格不能为空，而且必须是一个合理的数字
 
-                    $(".addForm").validate();
+                    $("#addForm").validate({
+                        rules: {
+                            price: {
+                                required: true,
+                                number: true,
+                                range:[1, 100000]
+                            },
+                            email: {
+                                email: true,
+                                minlength: 10
+                            }
+                        }
+                    });
 
-                    if (!$(".addForm").valid()) return;
+                    if (!$("#addForm").valid()) return;
 
                     // 将表格的内容提交给后台
                     $.ajax({
                         method: "POST",
                         url: "${pageContext.request.contextPath}/add",
-                        data: $(".addForm").serialize()
+                        data: $("#addForm").serialize()
                     }).done(function () {
                         $("#addDiv").remove();
                         loadTable();

@@ -2,7 +2,7 @@
 
 <div id="editDiv">
     <h3>修改手机</h3>
-    <form class="editForm">
+    <form id="editForm">
         <div>
             <input name="name" placeholder="名字" value="${phone.name}">
         </div>
