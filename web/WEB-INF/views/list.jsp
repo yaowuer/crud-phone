@@ -1,14 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<tr>
-    <th>选择</th>
-    <th>编号</th>
-    <th>名字</th>
-    <th>厂商</th>
-    <th>价格</th>
-    <th>操作</th>
-</tr>
+<thead>
+    <tr>
+        <th>选择</th>
+        <th>序号</th>
+        <th>ID</th>
+        <th>名字</th>
+        <th>厂商</th>
+        <th>价格</th>
+        <th>操作</th>
+    </tr>
+</thead>
+<tbody>
 <c:forEach var="phone" items="${phones}" varStatus="s">
     <tr data-id="${phone.id}">
         <td><input type="checkbox" name="id" value="${phone.id}"></td>
@@ -23,3 +27,4 @@
         </td>
     </tr>
 </c:forEach>
+</tbody>

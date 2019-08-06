@@ -16,10 +16,6 @@
         </div>
 
         <div>
-            <input name="email" placeholder="邮箱" required>
-        </div>
-
-        <div>
             <input type="submit" class="submit" value="提交">
             <button class="back">返回</button>
         </div>

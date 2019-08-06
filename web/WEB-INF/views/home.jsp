@@ -6,6 +6,8 @@
 <html>
 <head>
     <title>首页</title>
+    <link rel="stylesheet" href="${root}/assets/bootstrap.min.css">
+
     <script src="${root}/assets/jquery.js"></script>
     <script src="${root}/assets/jquery.validate.min.js"></script>
     <script src="${root}/assets/messages_zh.js"></script>
@@ -33,7 +35,7 @@
 </header>
 
 <div class="container">
-    <table>
+    <table class="table table-striped table-hover table-bordered">
     </table>
 
     <div>
@@ -42,9 +44,9 @@
     </div>
 
     <div style="margin-top: 1em">
-        <button>反选</button>
-        <button>取消所有选择</button>
-        <button>选择所有</button>
+        <button class="btn btn-primary">反选</button>
+        <button class="btn btn-danger">取消所有选择</button>
+        <button class="btn btn-success">选择所有</button>
     </div>
 </div>
 
@@ -128,10 +130,6 @@
                                 required: true,
                                 number: true,
                                 range:[1, 100000]
-                            },
-                            email: {
-                                email: true,
-                                minlength: 10
                             }
                         }
                     });
