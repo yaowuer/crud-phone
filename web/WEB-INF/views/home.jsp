@@ -22,6 +22,7 @@
             background: white;
             padding: 20px;
         }
+
         label.error {
             color: red;
             padding-left: 1em;
@@ -44,9 +45,9 @@
     </div>
 
     <div style="margin-top: 1em">
-        <button class="btn btn-primary">反选</button>
-        <button class="btn btn-danger">取消所有选择</button>
-        <button class="btn btn-success">选择所有</button>
+        <button class="btn btn-primary check-1">反选</button>
+        <button class="btn btn-danger check-2">取消所有选择</button>
+        <button class="btn btn-success check-3">选择所有</button>
     </div>
 </div>
 
@@ -60,7 +61,7 @@
         })
     }
 
-    function doDelete (e) {
+    function doDelete(e) {
         $.get("${root}/delete?id=" + $(this).closest("tr").attr("data-id"), function (res) {
             e.preventDefault();
             loadTable();
@@ -86,7 +87,7 @@
         }
     }
 
-    function doUpdate () {
+    function doUpdate() {
         $.get("${root}/edit?id=" + $(this).closest("tr").attr("data-id"), function (res) {
             $(res)
                 .addClass("doFloat")
@@ -111,7 +112,7 @@
         })
     }
 
-    function doAdd (e) {
+    function doAdd(e) {
         $.get("${root}/add", function (res) {
             $(res)
                 .addClass("doFloat")
@@ -129,7 +130,7 @@
                             price: {
                                 required: true,
                                 number: true,
-                                range:[1, 100000]
+                                range: [1, 100000]
                             }
                         }
                     });
@@ -153,9 +154,24 @@
         });
     }
 
+    function addCheckEvent() {
+        $(".check-1").click(function () {
+            $(":checkbox").each(function (i, e) {
+                $(e).prop("checked", !$(e).prop("checked"));
+            });
+        });
+        $(".check-2").click(function () {
+            $(":checked").prop("checked", false);
+        });
+        $(".check-3").click(function () {
+            $(":checkbox").prop("checked", true);
+        });
+    }
+
     // 页面加载完要做的事情
     $(function () {
         loadTable();
+        addCheckEvent();
 
         $("table").on("click", ".del", doDelete).on('click', ".update", doUpdate);
         $(".addPhone").on('click', doAdd);
